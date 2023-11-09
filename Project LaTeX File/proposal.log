@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.18)  8 NOV 2023 23:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.18)  9 NOV 2023 16:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/OneDrive/OneDrive - Habib University/Semester 3/OOP/project/Project Proposal/proposal.tex"
-(c:/OneDrive/OneDrive - Habib University/Semester 3/OOP/project/Project Proposal/proposal.tex
+**"c:/OneDrive/OneDrive - Habib University/Semester 3/OOP/project/OOP-Project-Fall-23/Project LaTeX File/proposal.tex"
+(c:/OneDrive/OneDrive - Habib University/Semester 3/OOP/project/OOP-Project-Fall-23/Project LaTeX File/proposal.tex
 LaTeX2e <2023-06-01>
 L3 programming layer <2023-06-05>
 (C:\Users\hania\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -455,14 +455,14 @@ Package rerunfilecheck Info: File `proposal.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  15627 strings out of 476048
- 304789 string characters out of 5780228
+ 304987 string characters out of 5780228
  1862753 words of memory out of 5000000
  36182 multiletter control sequences out of 15000+600000
  522487 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,6n,80p,597b,959s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,6n,80p,619b,959s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\hania\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/hania/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/hania/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/hania/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/hania/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss12.pfb>
-Output written on proposal.pdf (5 pages, 747322 bytes).
+Output written on proposal.pdf (5 pages, 747336 bytes).
 PDF statistics:
  97 PDF objects out of 1000 (max. 8388607)
  17 named destinations out of 1000 (max. 500000)
