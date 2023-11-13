@@ -47,6 +47,8 @@ void Character::update()
 
     if ((TheInputHandler::Instance()->keyDown(SDL_SCANCODE_RIGHT)))
     {
+        currRow = 3;
+        currFrame = int(((SDL_GetTicks() / 300) % 4));
         move_x += 1;
         if (move_x >= 2149 || move_x <= 783)
         {
@@ -55,6 +57,8 @@ void Character::update()
     };
     if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_LEFT))
     {
+        currRow = 4;
+        currFrame = int(((SDL_GetTicks() / 300) % 4));
         move_x -= 1;
         if (move_x <= 783 || move_x >= 2149)
         {
@@ -63,6 +67,8 @@ void Character::update()
     };
     if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_UP))
     {
+        currRow = 1;
+        currFrame = int(((SDL_GetTicks() / 300) % 4));
         move_y -= 1;
         if (move_y >= 1152 || move_y <= 384)
         {
@@ -71,17 +77,14 @@ void Character::update()
     };
     if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_DOWN))
     {
+        currRow = 2;
+        currFrame = int(((SDL_GetTicks() / 300) % 4));
         move_y += 1;
         if (move_y >= 1152 || move_y <= 384)
         {
             y_pos += 1;
         }
     };
-
-    if ((TheInputHandler::Instance()->keyDown(SDL_SCANCODE_RIGHT)) || (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_LEFT)) || (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_UP)) || (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_DOWN)))
-    {
-        currFrame = int(((SDL_GetTicks() / 300) % 7));
-    }
 }
 
 void Character::clean()

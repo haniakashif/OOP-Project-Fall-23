@@ -1,3 +1,6 @@
+#ifndef __Characters__
+#define __Characters__
+
 #include "gameObj.h"
 
 class Character : public gameObject
@@ -11,3 +14,5 @@ private:
     int move_x = 783;
     int move_y = 384;
 };
+
+#endif

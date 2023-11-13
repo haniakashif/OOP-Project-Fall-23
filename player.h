@@ -1,3 +1,6 @@
+#ifndef __Player__
+#define __Player__
+
 #include "gameObj.h"
 
 class player : public gameObject
@@ -8,3 +11,5 @@ public:
     void update();
     void clean();
 };
+
+#endif

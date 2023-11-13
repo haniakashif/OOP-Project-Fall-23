@@ -50,11 +50,15 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	{
 		return false;
 	}
-	if (!TheTextureManager::instance()->load_img("characters.png", "char_animate", Renderer))
+	// if (!TheTextureManager::instance()->load_img("characters.png", "char_animate", Renderer))
+	// {
+	// 	return false;
+	// }
+	if (!TheTextureManager::instance()->load_img("back_tst.png", "back", Renderer))
 	{
 		return false;
 	}
-	if (!TheTextureManager::instance()->load_img("back_tst.png", "back", Renderer))
+	if (!TheTextureManager::instance()->load_img("walk 1.png", "w1", Renderer))
 	{
 		return false;
 	}
@@ -63,31 +67,22 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	en2 = new enemy();
 	pl1 = new player();
 	pl2 = new player();
-	char2 = new Character();
-	back1 = new Background();
-	// back2 = new Background();
-	// back3 = new Background();
-	// back4 = new Background();
-
 	en1->load(0, 0, 158, 126, "animate");
 	en2->load(0, 100, 158, 126, "animate");
 	pl1->load(0, 200, 158, 126, "animate");
 	pl2->load(0, 300, 158, 126, "animate");
-	char2->load(683, 384, 32, 30, "char_animate", 0, 70);
+	char2 = new Character();
+	back1 = new Background();
+	char2->load(683, 384, 32, 32, "w1");
 	back1->load(0, 0, 2732, 1536, "back", 0, 0);
-	// back2->load(1367, 0, 1366, 768, "back", 1367, 0);
-	// back3->load(0, 769, 1366, 768, "back", 0, 79);
-	// back4->load(1367, 769, 1366, 768, "back", 1367, 769);
 
-	objects.push_back((back1));
-	// objects.push_back((back2));
-	// objects.push_back((back3));
-	// objects.push_back((back4));
-	objects.push_back((en1));
-	objects.push_back((en2));
-	objects.push_back((pl1));
-	objects.push_back((pl2));
-	objects.push_back((char2));
+	menu_objects.push_back((en1));
+	menu_objects.push_back((en2));
+	menu_objects.push_back((pl1));
+	menu_objects.push_back((pl2));
+
+	play_objects.push_back((back1));
+	play_objects.push_back((char2));
 
 	return true;
 }
@@ -95,26 +90,70 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 void Game::render()
 {
 	SDL_RenderClear(Renderer);
-	for (int i = 0; i < objects.size(); i++)
+	if (state == 0)
 	{
-		objects[i]->draw(Renderer);
+		for (int i = 0; i < menu_objects.size(); i++)
+		{
+			menu_objects[i]->draw(Renderer);
+		}
+	}
+	else if (state == 1)
+	{
+		for (int i = 0; i < play_objects.size(); i++)
+		{
+			play_objects[i]->draw(Renderer);
+		}
+	}
+	else if (state == 2)
+	{
+		for (int i = 0; i < gameover_objects.size(); i++)
+		{
+			gameover_objects[i]->draw(Renderer);
+		}
 	}
 	SDL_RenderPresent(Renderer);
 }
 
 void Game::update()
 {
-	for (int i = 0; i < objects.size(); i++)
+	if (state == 0)
 	{
-		objects[i]->update();
+		for (int i = 0; i < menu_objects.size(); i++)
+		{
+			menu_objects[i]->update();
+		}
+	}
+	else if (state == 1)
+	{
+		for (int i = 0; i < play_objects.size(); i++)
+		{
+			play_objects[i]->update();
+		}
+	}
+	else if (state == 2)
+	{
+		for (int i = 0; i < gameover_objects.size(); i++)
+		{
+			gameover_objects[i]->update();
+		}
 	}
 }
 void Game::clean()
 {
 	std::cout << "cleaning game\n";
-	for (int i = 0; i < objects.size(); i++)
+	if (state == 0)
 	{
-		objects[i]->clean();
+		for (int i = 0; i < menu_objects.size(); i++)
+		{
+			menu_objects[i]->clean();
+		}
+	}
+	else if (state == 1)
+	{
+		for (int i = 0; i < play_objects.size(); i++)
+		{
+			play_objects[i]->clean();
+		}
 	}
 
 	SDL_DestroyWindow(Window);
@@ -139,6 +178,16 @@ void Game::handleEvents()
 			{
 			case SDLK_ESCAPE:
 				Running = false;
+				break;
+			case SDLK_RETURN:
+
+				if (state == 0)
+					state = 1;
+				else if (state == 1)
+					state = 2;
+				else if (state == 2)
+					state = 0;
+				std::cout << state << "\n";
 				break;
 			default:
 				break;

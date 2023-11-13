@@ -9,3 +9,11 @@ void InputHandler::update()
 {
     mKeyBoardStates = SDL_GetKeyboardState(NULL);
 }
+InputHandler *InputHandler::Instance()
+{
+    if (s_pInstance == nullptr)
+    {
+        s_pInstance = new InputHandler();
+    }
+    return s_pInstance;
+}

@@ -2,6 +2,7 @@
 #define __gameObject__
 
 #include <SDL.h>
+// #include "Game.h"
 #include <string>
 #include <SDL_image.h>
 #include <iostream>

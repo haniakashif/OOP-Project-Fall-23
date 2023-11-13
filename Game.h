@@ -3,10 +3,10 @@
 
 #include <vector>
 // #include "gameObj.h"
-#include "player.h"
-#include "enemy.h"
 #include "character.h"
 #include "background.h"
+#include "enemy.h"
+#include "player.h"
 
 class Game
 {
@@ -21,7 +21,9 @@ public:
 	void Quit() { Running = false; }
 	bool running() { return Running; }
 	SDL_Renderer *get_renderer() { return Renderer; }
-	std::vector<gameObject *> objects;
+	std::vector<gameObject *> menu_objects;
+	std::vector<gameObject *> play_objects;
+	std::vector<gameObject *> gameover_objects;
 
 private:
 	Game() {}
@@ -29,6 +31,8 @@ private:
 	SDL_Window *Window;
 	SDL_Renderer *Renderer;
 	bool Running;
+
+	int state = 0;
 
 	gameObject *pl1;
 	gameObject *pl2;

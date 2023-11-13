@@ -1,3 +1,6 @@
+#ifndef __Enemy__
+#define __Enemy__
+
 #include "gameObj.h"
 
 class enemy : public gameObject
@@ -7,3 +10,5 @@ class enemy : public gameObject
     void update();
     void clean();
 };
+
+#endif

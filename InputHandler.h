@@ -6,19 +6,12 @@
 class InputHandler
 {
 public:
-    static InputHandler *Instance()
-    {
-        if (s_pInstance == nullptr)
-        {
-            s_pInstance = new InputHandler();
-        }
-        return s_pInstance;
-    }
+        static InputHandler *Instance();
 
-    bool keyDown(SDL_Scancode scanCode);
-    void update();
+        bool keyDown(SDL_Scancode scanCode);
+        void update();
 
-    void clean() {}
+        void clean() {}
 
 private:
     InputHandler()

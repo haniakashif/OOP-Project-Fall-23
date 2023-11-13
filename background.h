@@ -1,3 +1,6 @@
+#ifndef __Background__
+#define __Background__
+
 #include "gameObj.h"
 
 class Background : public gameObject
@@ -11,3 +14,5 @@ private:
     int move_x = 783;
     int move_y = 384;
 };
+
+#endif

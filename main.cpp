@@ -11,9 +11,8 @@ int main(int argc, char *args[])
 {
 	Uint32 frameStart, frameTime;
 
-	if (TheGame::instance()->init("Chapter 1", 100, 100, 1366, 768, true))
+	if (TheGame::instance()->init("Game", 100, 100, 1366, 768, true))
 	{
-
 		while (TheGame::instance()->running())
 		{
 			frameStart = SDL_GetTicks();
