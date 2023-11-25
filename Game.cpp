@@ -66,6 +66,10 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	{
 		return false;
 	}
+	if (!TheTextureManager::instance()->load_img("enemy_walk.png", "enemy_walk", Renderer))
+	{
+		return false;
+	}
 
 	// en1 = new enemy();
 	// en2 = new enemy();
@@ -79,10 +83,14 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	back1 = new static_Objs();
 	tree1 = new Static_tree();
 	tree2 = new Static_tree();
+	tree3 = new Static_tree();
+	enemy1 = new Enemy_troll();
 	char2->load(783, 384, 32, 32, "w1");
 	back1->load(0, 0, 2732, 1536, "back", 0, 0, true);
 	tree1->load(100, 100, 128, 176, "tileset", 32, 304);
 	tree2->load(1000, 500, 128, 176, "tileset", 32, 304);
+	tree3->load(1200, 500, 128, 176, "tileset", 32, 304);
+	enemy1->load(1400, 400, 48, 48, "enemy_walk");
 
 	// menu_objects.push_back((en1));
 	// menu_objects.push_back((en2));
@@ -93,6 +101,8 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	play_objects.push_back((char2));
 	play_objects.push_back((tree1));
 	play_objects.push_back((tree2));
+	play_objects.push_back((tree3));
+	play_objects.push_back((enemy1));
 
 	return true;
 }

@@ -1,3 +1,4 @@
+#pragma once
 #include "static_Objs.h"
 
 class Static_tree : public static_Objs

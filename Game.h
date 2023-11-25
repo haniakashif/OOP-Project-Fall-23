@@ -4,7 +4,7 @@
 #include <vector>
 #include "character.h"
 
-#include "enemy.h"
+#include "Enemy_troll.h"
 #include "player.h"
 #include "Static_tree.h"
 
@@ -45,6 +45,8 @@ private:
 	gameObject *back4;
 	gameObject *tree1;
 	gameObject *tree2;
+	gameObject *tree3;
+	gameObject *enemy1;
 };
 
 typedef Game TheGame;

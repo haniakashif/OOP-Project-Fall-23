@@ -1,3 +1,4 @@
+#pragma once
 #include "CollissionManager.h"
 
 class static_Objs : public gameObject

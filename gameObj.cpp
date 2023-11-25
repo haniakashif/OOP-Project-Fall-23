@@ -2,6 +2,7 @@
 
 std::vector<gameObject *> gameObject::objects;
 std::vector<gameObject *> gameObject::player_objs;
+std::vector<gameObject *> gameObject::enemy_objs;
 
 void gameObject::load(int x, int y, int w, int h, std::string id, int x_s, int y_s, bool background)
 {
