@@ -2,11 +2,11 @@
 #define __Game__
 
 #include <vector>
-// #include "gameObj.h"
 #include "character.h"
-#include "background.h"
+
 #include "enemy.h"
 #include "player.h"
+#include "Static_tree.h"
 
 class Game
 {
@@ -43,6 +43,8 @@ private:
 	gameObject *back2;
 	gameObject *back3;
 	gameObject *back4;
+	gameObject *tree1;
+	gameObject *tree2;
 };
 
 typedef Game TheGame;

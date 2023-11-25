@@ -62,27 +62,37 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	{
 		return false;
 	}
+	if (!TheTextureManager::instance()->load_img("tileset.png", "tileset", Renderer))
+	{
+		return false;
+	}
 
-	en1 = new enemy();
-	en2 = new enemy();
-	pl1 = new player();
-	pl2 = new player();
-	en1->load(0, 0, 158, 126, "animate");
-	en2->load(0, 100, 158, 126, "animate");
-	pl1->load(0, 200, 158, 126, "animate");
-	pl2->load(0, 300, 158, 126, "animate");
+	// en1 = new enemy();
+	// en2 = new enemy();
+	// pl1 = new player();
+	// pl2 = new player();
+	// en1->load(0, 0, 158, 126, "animate");
+	// en2->load(0, 100, 158, 126, "animate");
+	// pl1->load(0, 200, 158, 126, "animate");
+	// pl2->load(0, 300, 158, 126, "animate");
 	char2 = new Character();
-	back1 = new Background();
-	char2->load(683, 384, 32, 32, "w1");
-	back1->load(0, 0, 2732, 1536, "back", 0, 0);
+	back1 = new static_Objs();
+	tree1 = new Static_tree();
+	tree2 = new Static_tree();
+	char2->load(783, 384, 32, 32, "w1");
+	back1->load(0, 0, 2732, 1536, "back", 0, 0, true);
+	tree1->load(100, 100, 128, 176, "tileset", 32, 304);
+	tree2->load(1000, 500, 128, 176, "tileset", 32, 304);
 
-	menu_objects.push_back((en1));
-	menu_objects.push_back((en2));
-	menu_objects.push_back((pl1));
-	menu_objects.push_back((pl2));
+	// menu_objects.push_back((en1));
+	// menu_objects.push_back((en2));
+	// menu_objects.push_back((pl1));
+	// menu_objects.push_back((pl2));
 
 	play_objects.push_back((back1));
 	play_objects.push_back((char2));
+	play_objects.push_back((tree1));
+	play_objects.push_back((tree2));
 
 	return true;
 }

@@ -1,8 +1,9 @@
 #include "character.h"
 
-void Character::load(int x, int y, int w, int h, std::string id, int x_s, int y_s)
+void Character::load(int x, int y, int w, int h, std::string id, int x_s, int y_s, bool background)
 {
-    gameObject::load(x, y, w, h, id, x_s, y_s);
+    player_objs.push_back(this);
+    gameObject::load(x, y, w, h, id, x_s, y_s, background);
 }
 
 void Character::draw(SDL_Renderer *renderer)
@@ -12,6 +13,7 @@ void Character::draw(SDL_Renderer *renderer)
 
 void Character::update()
 {
+
     if (x_pos < 0)
     {
         x_pos = 0;
@@ -49,42 +51,66 @@ void Character::update()
     {
         currRow = 3;
         currFrame = int(((SDL_GetTicks() / 300) % 4));
-        move_x += 1;
         if (move_x >= 2149 || move_x <= 783)
         {
             x_pos += 1;
+            if (TheCollissionManager::Instance()->collides(gameObject::objects, this))
+            {
+                x_pos -= 1;
+                move_x -= 1;
+            }
         }
     };
     if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_LEFT))
     {
         currRow = 4;
         currFrame = int(((SDL_GetTicks() / 300) % 4));
-        move_x -= 1;
         if (move_x <= 783 || move_x >= 2149)
         {
             x_pos -= 1;
+            if (TheCollissionManager::Instance()->collides(gameObject::objects, this))
+            {
+                x_pos += 1;
+                move_x += 1;
+            }
         }
     };
     if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_UP))
     {
         currRow = 1;
         currFrame = int(((SDL_GetTicks() / 300) % 4));
-        move_y -= 1;
         if (move_y >= 1152 || move_y <= 384)
         {
             y_pos -= 1;
+            if (TheCollissionManager::Instance()->collides(gameObject::objects, this))
+            {
+                y_pos += 1;
+                move_y += 1;
+            }
         }
     };
     if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_DOWN))
     {
         currRow = 2;
         currFrame = int(((SDL_GetTicks() / 300) % 4));
-        move_y += 1;
         if (move_y >= 1152 || move_y <= 384)
         {
             y_pos += 1;
+            if (TheCollissionManager::Instance()->collides(gameObject::objects, this))
+            {
+                y_pos -= 1;
+                move_y -= 1;
+            }
         }
-    };
+    }
+    if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_L))
+    {
+        std::cout << "L pressed\n";
+        for (int i = 0; i < gameObject::objects.size(); i++)
+        {
+            std::cout << gameObject::objects[i]->get_name() << std::endl;
+        }
+    }
 }
 
 void Character::clean()

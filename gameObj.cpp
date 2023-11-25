@@ -1,6 +1,9 @@
 #include "gameObj.h"
 
-void gameObject::load(int x, int y, int w, int h, std::string id, int x_s, int y_s)
+std::vector<gameObject *> gameObject::objects;
+std::vector<gameObject *> gameObject::player_objs;
+
+void gameObject::load(int x, int y, int w, int h, std::string id, int x_s, int y_s, bool background)
 {
     x_pos = x;
     y_pos = y;
@@ -30,3 +33,46 @@ void gameObject::update()
 void gameObject::clean()
 {
 }
+
+std::string gameObject::get_name()
+{
+    return name;
+}
+
+int gameObject::get_x()
+{
+    return x_pos;
+}
+int gameObject::get_y()
+{
+    return y_pos;
+}
+
+int gameObject::get_width()
+{
+    return width;
+}
+
+int gameObject::get_height()
+{
+    return height;
+}
+void gameObject::increment_x(int x)
+{
+    x_pos += x;
+}
+void gameObject::increment_y(int y)
+{
+    y_pos += y;
+}
+void gameObject::decrement_x(int x)
+{
+    x_pos -= x;
+}
+void gameObject::decrement_y(int y)
+{
+    y_pos -= y;
+}
+
+int gameObject::move_x = 783;
+int gameObject::move_y = 384;
