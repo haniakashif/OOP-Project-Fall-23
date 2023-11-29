@@ -1,7 +1,8 @@
 #pragma once
-#include "static_Objs.h"
 
-class Static_tree : public static_Objs
+#include "Static_tree.h"
+
+class Bullet : public Static_tree
 {
 public:
     virtual void load(int x, int y, int w, int h, std::string id, int x_s = 0, int y_s = 0, bool background = false);
@@ -9,4 +10,8 @@ public:
     virtual void update();
     virtual void clean();
     virtual void set_velocity(int x, int y);
+
+private:
+    int velocity_x;
+    int velocity_y;
 };

@@ -6,12 +6,13 @@
 class InputHandler
 {
 public:
-        static InputHandler *Instance();
+    static InputHandler *Instance();
 
-        bool keyDown(SDL_Scancode scanCode);
-        void update();
+    bool keyDown(SDL_Scancode scanCode);
+    void update();
 
-        void clean() {}
+    void clean() {}
+    bool keyUp(SDL_Scancode scanCode);
 
 private:
     InputHandler()

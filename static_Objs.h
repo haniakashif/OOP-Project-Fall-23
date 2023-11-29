@@ -8,6 +8,7 @@ public:
     virtual void draw(SDL_Renderer *renderer);
     virtual void update();
     virtual void clean();
+    virtual void set_velocity(int x, int y);
 
 protected:
     bool background;

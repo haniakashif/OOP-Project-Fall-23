@@ -70,6 +70,10 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	{
 		return false;
 	}
+	if (!TheTextureManager::instance()->load_img("bullets.png", "bullet", Renderer))
+	{
+		return false;
+	}
 
 	// en1 = new enemy();
 	// en2 = new enemy();
@@ -91,18 +95,22 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	tree2->load(1000, 500, 128, 176, "tileset", 32, 304);
 	tree3->load(1200, 500, 128, 176, "tileset", 32, 304);
 	enemy1->load(1400, 400, 48, 48, "enemy_walk");
+	// bullet_test = new Bullet();
+	// bullet_test->load(100, 100, 32, 32, "w1");
 
 	// menu_objects.push_back((en1));
 	// menu_objects.push_back((en2));
 	// menu_objects.push_back((pl1));
 	// menu_objects.push_back((pl2));
-
-	play_objects.push_back((back1));
-	play_objects.push_back((char2));
-	play_objects.push_back((tree1));
-	play_objects.push_back((tree2));
-	play_objects.push_back((tree3));
-	play_objects.push_back((enemy1));
+	// play_objects.push_back(gameObject::player_objs);
+	// play_objects.push_back(gameObject::objects);
+	// play_objects.push_back(gameObject::enemy_objs);
+	// play_objects.push_back((back1));
+	// play_objects.push_back((char2));
+	// play_objects.push_back((tree1));
+	// play_objects.push_back((tree2));
+	// play_objects.push_back((tree3));
+	// play_objects.push_back((enemy1));
 
 	return true;
 }
@@ -119,9 +127,18 @@ void Game::render()
 	}
 	else if (state == 1)
 	{
-		for (int i = 0; i < play_objects.size(); i++)
+		back1->draw(Renderer);
+		for (int i = 0; i < gameObject::player_objs.size(); i++)
 		{
-			play_objects[i]->draw(Renderer);
+			gameObject::player_objs[i]->draw(Renderer);
+		}
+		for (int i = 0; i < gameObject::objects.size(); i++)
+		{
+			gameObject::objects[i]->draw(Renderer);
+		}
+		for (int i = 0; i < gameObject::enemy_objs.size(); i++)
+		{
+			gameObject::enemy_objs[i]->draw(Renderer);
 		}
 	}
 	else if (state == 2)
@@ -145,9 +162,18 @@ void Game::update()
 	}
 	else if (state == 1)
 	{
-		for (int i = 0; i < play_objects.size(); i++)
+		back1->update();
+		for (int i = 0; i < gameObject::player_objs.size(); i++)
 		{
-			play_objects[i]->update();
+			gameObject::player_objs[i]->update();
+		}
+		for (int i = 0; i < gameObject::objects.size(); i++)
+		{
+			gameObject::objects[i]->update();
+		}
+		for (int i = 0; i < gameObject::enemy_objs.size(); i++)
+		{
+			gameObject::enemy_objs[i]->update();
 		}
 	}
 	else if (state == 2)

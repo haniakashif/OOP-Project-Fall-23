@@ -17,3 +17,8 @@ InputHandler *InputHandler::Instance()
     }
     return s_pInstance;
 }
+
+bool InputHandler::keyUp(SDL_Scancode scanCode)
+{
+    return !mKeyBoardStates[scanCode];
+}

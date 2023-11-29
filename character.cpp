@@ -49,6 +49,11 @@ void Character::update()
 
     if ((TheInputHandler::Instance()->keyDown(SDL_SCANCODE_RIGHT)))
     {
+        up = false;
+        down = false;
+        left = false;
+        right = true;
+
         currRow = 3;
         currFrame = int(((SDL_GetTicks() / 300) % 4));
         if (move_x >= 2149 || move_x <= 783)
@@ -63,6 +68,10 @@ void Character::update()
     };
     if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_LEFT))
     {
+        up = false;
+        down = false;
+        left = true;
+        right = false;
         currRow = 4;
         currFrame = int(((SDL_GetTicks() / 300) % 4));
         if (move_x <= 783 || move_x >= 2149)
@@ -77,6 +86,11 @@ void Character::update()
     };
     if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_UP))
     {
+        up = true;
+        down = false;
+        left = false;
+        right = false;
+
         currRow = 1;
         currFrame = int(((SDL_GetTicks() / 300) % 4));
         if (move_y >= 1152 || move_y <= 384)
@@ -91,6 +105,11 @@ void Character::update()
     };
     if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_DOWN))
     {
+        up = false;
+        down = true;
+        left = false;
+        right = false;
+
         currRow = 2;
         currFrame = int(((SDL_GetTicks() / 300) % 4));
         if (move_y >= 1152 || move_y <= 384)
@@ -103,13 +122,22 @@ void Character::update()
             }
         }
     }
-    if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_L))
+
+    if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_SPACE) && !shoot)
     {
-        std::cout << "L pressed\n";
-        for (int i = 0; i < gameObject::objects.size(); i++)
-        {
-            std::cout << gameObject::objects[i]->get_name() << std::endl;
-        }
+        if (up)
+            TheShooter::Instance()->shoot_up(this);
+        if (down)
+            TheShooter::Instance()->shoot_down(this);
+        if (left)
+            TheShooter::Instance()->shoot_left(this);
+        if (right)
+            TheShooter::Instance()->shoot_right(this);
+        shoot = true;
+    }
+    if (TheInputHandler::Instance()->keyUp(SDL_SCANCODE_SPACE))
+    {
+        shoot = false;
     }
 }
 

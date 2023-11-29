@@ -2,6 +2,7 @@
 #define __Characters__
 
 #include "CollissionManager.h"
+#include "Shooter.h"
 
 class Character : public gameObject
 {
@@ -11,6 +12,11 @@ class Character : public gameObject
     void clean();
 
 private:
+    bool shoot = false;
+    bool up = false;
+    bool down = true;
+    bool left = false;
+    bool right = false;
 };
 
 #endif

@@ -67,3 +67,8 @@ void Static_tree::load(int x, int y, int w, int h, std::string id, int x_s, int 
 {
     static_Objs::load(x, y, w, h, id, x_s, y_s, background);
 }
+
+void Static_tree::set_velocity(int x, int y)
+{
+    static_Objs::set_velocity(x, y);
+}

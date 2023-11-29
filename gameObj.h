@@ -29,6 +29,8 @@ public:
     void decrement_x(int x);
     void decrement_y(int y);
 
+    virtual void set_velocity(int x, int y);
+
     static std::vector<gameObject *> objects;
     static std::vector<gameObject *> player_objs;
     static std::vector<gameObject *> enemy_objs;
@@ -52,6 +54,9 @@ protected:
 
     int currFrame;
     int currRow;
+
+    int velocity_x = 0;
+    int velocity_y = 0;
 };
 
 #endif

@@ -75,5 +75,11 @@ void gameObject::decrement_y(int y)
     y_pos -= y;
 }
 
+void gameObject::set_velocity(int x, int y)
+{
+    velocity_x = x;
+    velocity_y = y;
+}
+
 int gameObject::move_x = 783;
 int gameObject::move_y = 384;
