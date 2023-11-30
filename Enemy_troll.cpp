@@ -16,7 +16,7 @@ void Enemy_troll::update()
 
     if ((TheInputHandler::Instance()->keyDown(SDL_SCANCODE_RIGHT)))
     {
-        if (!TheCollissionManager::Instance()->collides_with_right(gameObject::player_objs, gameObject::objects, 0))
+        if ((!TheCollissionManager::Instance()->collides_with_right(gameObject::player_objs, gameObject::objects, 0)))
         {
             if (move_x < 2149 && move_x > 783)
             {

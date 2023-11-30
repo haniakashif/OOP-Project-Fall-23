@@ -19,6 +19,8 @@ public:
     virtual void update();
     virtual void clean();
 
+    virtual void remove_from_vector(std::vector<gameObject *> &vec, gameObject *obj);
+
     int get_x();
     int get_y();
     int get_width();

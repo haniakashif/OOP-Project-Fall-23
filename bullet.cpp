@@ -16,6 +16,10 @@ void Bullet::update()
     currFrame = int(((SDL_GetTicks() / 300) % 4));
     x_pos += velocity_x;
     y_pos += velocity_y;
+    if (TheCollissionManager::Instance()->collides(gameObject::objects, this) || (x_pos > 3000) || (x_pos < 0) || (y_pos > 3000) || (y_pos < 0))
+    {
+        gameObject::remove_from_vector(gameObject::objects, this);
+    }
 }
 
 void Bullet::clean()

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Static_tree.h"
+#include "CollissionManager.h"
 
 class Bullet : public Static_tree
 {

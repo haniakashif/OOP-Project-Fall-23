@@ -81,5 +81,18 @@ void gameObject::set_velocity(int x, int y)
     velocity_y = y;
 }
 
+void gameObject::remove_from_vector(std::vector<gameObject *> &vec, gameObject *obj)
+{
+    for (int i = 0; i < vec.size(); i++)
+    {
+        if (vec[i]->get_name() == obj->get_name())
+        {
+            gameObject *temp = vec[i];
+            vec.erase(vec.begin() + i);
+            delete temp;
+        }
+    }
+}
+
 int gameObject::move_x = 783;
 int gameObject::move_y = 384;
