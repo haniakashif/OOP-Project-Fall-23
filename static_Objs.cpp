@@ -48,10 +48,10 @@ void static_Objs::update()
     {
         y_pos = -768;
     }
-    std::cout << "colliding with top: " << TheCollissionManager::Instance()->collides_with_top(gameObject::player_objs, gameObject::objects, 0) << std::endl;
-    std::cout << "colliding with bottom: " << TheCollissionManager::Instance()->collides_with_bottom(gameObject::player_objs, gameObject::objects, 0) << std::endl;
-    std::cout << "colliding with left: " << TheCollissionManager::Instance()->collides_with_right(gameObject::player_objs, gameObject::objects, 0) << std::endl;
-    std::cout << "colliding with right: " << TheCollissionManager::Instance()->collides_with_left(gameObject::player_objs, gameObject::objects, 0) << std::endl;
+    // std::cout << "colliding with top: " << TheCollissionManager::Instance()->collides_with_top(gameObject::player_objs, gameObject::objects, 0) << std::endl;
+    // std::cout << "colliding with bottom: " << TheCollissionManager::Instance()->collides_with_bottom(gameObject::player_objs, gameObject::objects, 0) << std::endl;
+    // std::cout << "colliding with left: " << TheCollissionManager::Instance()->collides_with_right(gameObject::player_objs, gameObject::objects, 0) << std::endl;
+    // std::cout << "colliding with right: " << TheCollissionManager::Instance()->collides_with_left(gameObject::player_objs, gameObject::objects, 0) << std::endl;
     if ((TheInputHandler::Instance()->keyDown(SDL_SCANCODE_RIGHT)))
     {
         if (!TheCollissionManager::Instance()->collides_with_right(gameObject::player_objs, gameObject::objects, 0))

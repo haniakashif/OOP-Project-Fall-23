@@ -74,6 +74,10 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	{
 		return false;
 	}
+	if (!TheTextureManager::instance()->load_img("hearts.png", "hearts", Renderer))
+	{
+		return false;
+	}
 
 	// en1 = new enemy();
 	// en2 = new enemy();
@@ -89,12 +93,17 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	tree2 = new Static_tree();
 	tree3 = new Static_tree();
 	enemy1 = new Enemy_troll();
+	enemy2 = new Enemy_troll();
+	life = new lives();
 	char2->load(783, 384, 32, 32, "w1");
 	back1->load(0, 0, 2732, 1536, "back", 0, 0, true);
 	tree1->load(100, 100, 128, 176, "tileset", 32, 304);
 	tree2->load(1000, 500, 128, 176, "tileset", 32, 304);
 	tree3->load(1200, 500, 128, 176, "tileset", 32, 304);
 	enemy1->load(1400, 400, 48, 48, "enemy_walk");
+	enemy2->load(100, 400, 48, 48, "enemy_walk");
+	life->load(0, 0, 105, 34, "hearts");
+
 	// bullet_test = new Bullet();
 	// bullet_test->load(100, 100, 32, 32, "w1");
 
@@ -140,6 +149,10 @@ void Game::render()
 		{
 			gameObject::enemy_objs[i]->draw(Renderer);
 		}
+		for (int i = 0; i < gameObject::foreground_objs.size(); i++)
+		{
+			gameObject::foreground_objs[i]->draw(Renderer);
+		}
 	}
 	else if (state == 2)
 	{
@@ -175,6 +188,11 @@ void Game::update()
 		{
 			gameObject::enemy_objs[i]->update();
 		}
+		for (int i = 0; i < gameObject::foreground_objs.size(); i++)
+		{
+			gameObject::foreground_objs[i]->update();
+		}
+		std::cout << "foreground size: " << gameObject::foreground_objs.size() << "\n";
 	}
 	else if (state == 2)
 	{

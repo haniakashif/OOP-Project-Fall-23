@@ -1,6 +1,6 @@
 #include "Enemy_troll.h"
 
-void Enemy_troll::load(int x, int y, int w, int h, std::string id, int x_s, int y_s)
+void Enemy_troll::load(int x, int y, int w, int h, std::string id, int x_s, int y_s, bool background)
 {
     enemy::load(x, y, w, h, id, x_s, y_s);
 }

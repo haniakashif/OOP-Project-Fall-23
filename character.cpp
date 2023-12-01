@@ -139,6 +139,12 @@ void Character::update()
     {
         shoot = false;
     }
+    int curr_time = SDL_GetTicks();
+    if ((TheCollissionManager::Instance()->collides(gameObject::enemy_objs, this)) && (curr_time - time >= 5000))
+    {
+        life--;
+        time = curr_time;
+    }
 }
 
 void Character::clean()

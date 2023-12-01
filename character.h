@@ -17,6 +17,8 @@ private:
     bool down = true;
     bool left = false;
     bool right = false;
+
+    int time = 0;
 };
 
 #endif

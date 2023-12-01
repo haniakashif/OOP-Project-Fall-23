@@ -8,6 +8,7 @@
 #include "player.h"
 #include "Static_tree.h"
 #include "bullet.h"
+#include "lives.h"
 
 class Game
 {
@@ -48,7 +49,9 @@ private:
 	gameObject *tree2;
 	gameObject *tree3;
 	gameObject *enemy1;
+	gameObject *enemy2;
 	gameObject *bullet_test;
+	gameObject *life;
 };
 
 typedef Game TheGame;
