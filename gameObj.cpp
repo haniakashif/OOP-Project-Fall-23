@@ -5,6 +5,8 @@ std::vector<gameObject *> gameObject::player_objs;
 std::vector<gameObject *> gameObject::enemy_objs;
 std::vector<gameObject *> gameObject::foreground_objs;
 
+int gameObject::state = 0;
+
 int gameObject::life = 3;
 
 void gameObject::load(int x, int y, int w, int h, std::string id, int x_s, int y_s, bool background)
@@ -32,6 +34,10 @@ void gameObject::draw(SDL_Renderer *renderer)
 
 void gameObject::update()
 {
+    if (gameObject::life <= 0)
+    {
+        gameObject::state = 2;
+    }
 }
 
 void gameObject::clean()

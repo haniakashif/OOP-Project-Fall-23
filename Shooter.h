@@ -1,6 +1,7 @@
 #pragma once
 
 #include "bullet.h"
+#include "enemy_bullet.h"
 
 class Shooter
 {
@@ -15,6 +16,8 @@ public:
     void shoot_right(gameObject *shooter);
 
     void shoot(gameObject *shooter, int x, int y);
+
+    void enemy_shoot(gameObject *shooter, int x, int y);
     static Shooter *Instance();
 };
 

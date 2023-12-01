@@ -41,6 +41,8 @@ public:
     static int move_x;
     static int move_y;
 
+    static int state;
+
     static int life;
 
     std::string get_name();

@@ -78,6 +78,10 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	{
 		return false;
 	}
+	if (!TheTextureManager::instance()->load_img("enemy_bullet.png", "e_bullet", Renderer))
+	{
+		return false;
+	}
 
 	// en1 = new enemy();
 	// en2 = new enemy();
@@ -127,14 +131,14 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 void Game::render()
 {
 	SDL_RenderClear(Renderer);
-	if (state == 0)
+	if (gameObject::state == 0)
 	{
 		for (int i = 0; i < menu_objects.size(); i++)
 		{
 			menu_objects[i]->draw(Renderer);
 		}
 	}
-	else if (state == 1)
+	else if (gameObject::state == 1)
 	{
 		back1->draw(Renderer);
 		for (int i = 0; i < gameObject::player_objs.size(); i++)
@@ -154,7 +158,7 @@ void Game::render()
 			gameObject::foreground_objs[i]->draw(Renderer);
 		}
 	}
-	else if (state == 2)
+	else if (gameObject::state == 2)
 	{
 		for (int i = 0; i < gameover_objects.size(); i++)
 		{
@@ -166,15 +170,20 @@ void Game::render()
 
 void Game::update()
 {
-	if (state == 0)
+	if (gameObject::state == 0)
 	{
 		for (int i = 0; i < menu_objects.size(); i++)
 		{
 			menu_objects[i]->update();
 		}
 	}
-	else if (state == 1)
+	else if (gameObject::state == 1)
 	{
+		if (gameObject::life <= 0)
+		{
+			gameObject::state = 2;
+			gameObject::life = 3;
+		}
 		back1->update();
 		for (int i = 0; i < gameObject::player_objs.size(); i++)
 		{
@@ -192,10 +201,10 @@ void Game::update()
 		{
 			gameObject::foreground_objs[i]->update();
 		}
-		std::cout << "foreground size: " << gameObject::foreground_objs.size() << "\n";
 	}
-	else if (state == 2)
+	else if (gameObject::state == 2)
 	{
+		std::cout << "game over\n";
 		for (int i = 0; i < gameover_objects.size(); i++)
 		{
 			gameover_objects[i]->update();
@@ -205,14 +214,14 @@ void Game::update()
 void Game::clean()
 {
 	std::cout << "cleaning game\n";
-	if (state == 0)
+	if (gameObject::state == 0)
 	{
 		for (int i = 0; i < menu_objects.size(); i++)
 		{
 			menu_objects[i]->clean();
 		}
 	}
-	else if (state == 1)
+	else if (gameObject::state == 1)
 	{
 		for (int i = 0; i < play_objects.size(); i++)
 		{
@@ -245,13 +254,13 @@ void Game::handleEvents()
 				break;
 			case SDLK_RETURN:
 
-				if (state == 0)
-					state = 1;
-				else if (state == 1)
-					state = 2;
-				else if (state == 2)
-					state = 0;
-				std::cout << state << "\n";
+				if (gameObject::state == 0)
+					gameObject::state = 1;
+				else if (gameObject::state == 1)
+					gameObject::state = 2;
+				else if (gameObject::state == 2)
+					gameObject::state = 0;
+				std::cout << gameObject::state << "\n";
 				break;
 			default:
 				break;

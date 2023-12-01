@@ -35,6 +35,13 @@ void Shooter::shoot(gameObject *shooter, int x, int y)
     bullet->load(shooter->get_x() + x, shooter->get_y() + y, 15, 9, "bullet", 0, 0);
 }
 
+void Shooter::enemy_shoot(gameObject *shooter, int x, int y)
+{
+    gameObject *bullet = new enemy_bullet();
+    bullet->set_velocity(x, y);
+    bullet->load(shooter->get_x() + x, shooter->get_y() + y, 8, 8, "e_bullet");
+}
+
 Shooter *Shooter::instance = nullptr;
 
 Shooter *Shooter::Instance()

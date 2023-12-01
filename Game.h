@@ -34,9 +34,7 @@ private:
 	SDL_Renderer *Renderer;
 	bool Running;
 
-	int state = 0;
-
-	gameObject *pl1;
+		gameObject *pl1;
 	gameObject *pl2;
 	gameObject *en1;
 	gameObject *en2;

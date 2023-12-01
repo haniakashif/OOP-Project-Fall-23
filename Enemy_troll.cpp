@@ -67,7 +67,6 @@ void Enemy_troll::update()
     }
     if (moving_right)
     {
-
         x_pos += 1;
         counter += 1;
     }
@@ -75,6 +74,19 @@ void Enemy_troll::update()
     {
         x_pos -= 1;
         counter -= 1;
+    }
+    int char_x = gameObject::player_objs[0]->get_x();
+    int char_y = gameObject::player_objs[0]->get_y();
+    int i = char_x - x_pos;
+    int j = char_y - y_pos;
+    double distance = sqrt((i * i) + (j * j));
+    int x = ceil((i / distance) * 4);
+    int y = ceil((j / distance) * 4);
+    int curr_time = SDL_GetTicks();
+    if (curr_time - time >= 3000)
+    {
+        TheShooter::Instance()->enemy_shoot(this, x, y);
+        time = curr_time;
     }
 }
 
