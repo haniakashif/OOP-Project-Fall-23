@@ -37,6 +37,7 @@ public:
     static std::vector<gameObject *> player_objs;
     static std::vector<gameObject *> enemy_objs;
     static std::vector<gameObject *> foreground_objs;
+    static std::vector<gameObject *> menu_objects;
 
     static int move_x;
     static int move_y;

@@ -4,6 +4,7 @@ std::vector<gameObject *> gameObject::objects;
 std::vector<gameObject *> gameObject::player_objs;
 std::vector<gameObject *> gameObject::enemy_objs;
 std::vector<gameObject *> gameObject::foreground_objs;
+std::vector<gameObject *> gameObject::menu_objects;
 
 int gameObject::state = 0;
 

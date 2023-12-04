@@ -11,7 +11,7 @@ int main(int argc, char *args[])
 {
 	Uint32 frameStart, frameTime;
 
-	if (TheGame::instance()->init("Game", 100, 100, 1366, 768, false))
+	if (TheGame::instance()->init("Game", 100, 100, 1366, 768, true))
 	{
 		while (TheGame::instance()->running())
 		{

@@ -80,13 +80,16 @@ void Enemy_troll::update()
     int i = char_x - x_pos;
     int j = char_y - y_pos;
     double distance = sqrt((i * i) + (j * j));
-    int x = ceil((i / distance) * 4);
-    int y = ceil((j / distance) * 4);
+    int x = round((i / distance) * 4);
+    int y = round((j / distance) * 4);
     int curr_time = SDL_GetTicks();
-    if (curr_time - time >= 3000)
+    if (TheCollissionManager::Instance()->collides_with_buffer(gameObject::player_objs, this, 400))
     {
-        TheShooter::Instance()->enemy_shoot(this, x, y);
-        time = curr_time;
+        if (curr_time - time >= 3000)
+        {
+            TheShooter::Instance()->enemy_shoot(this, x, y);
+            time = curr_time;
+        }
     }
 }
 

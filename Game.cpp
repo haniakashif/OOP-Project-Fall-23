@@ -54,7 +54,7 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	// {
 	// 	return false;
 	// }
-	if (!TheTextureManager::instance()->load_img("back_tst.png", "back", Renderer))
+	if (!TheTextureManager::instance()->load_img("background.png", "back", Renderer))
 	{
 		return false;
 	}
@@ -82,6 +82,10 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	{
 		return false;
 	}
+	if (!TheTextureManager::instance()->load_img("menu.png", "menu_back", Renderer))
+	{
+		return false;
+	}
 
 	// en1 = new enemy();
 	// en2 = new enemy();
@@ -99,6 +103,7 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	enemy1 = new Enemy_troll();
 	enemy2 = new Enemy_troll();
 	life = new lives();
+	menu_bck = new menu();
 	char2->load(783, 384, 32, 32, "w1");
 	back1->load(0, 0, 2732, 1536, "back", 0, 0, true);
 	tree1->load(100, 100, 128, 176, "tileset", 32, 304);
@@ -107,6 +112,7 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	enemy1->load(1400, 400, 48, 48, "enemy_walk");
 	enemy2->load(100, 400, 48, 48, "enemy_walk");
 	life->load(0, 0, 105, 34, "hearts");
+	menu_bck->load(0, 0, 1366, 768, "menu_back");
 
 	// bullet_test = new Bullet();
 	// bullet_test->load(100, 100, 32, 32, "w1");
@@ -133,9 +139,9 @@ void Game::render()
 	SDL_RenderClear(Renderer);
 	if (gameObject::state == 0)
 	{
-		for (int i = 0; i < menu_objects.size(); i++)
+		for (int i = 0; i < gameObject::menu_objects.size(); i++)
 		{
-			menu_objects[i]->draw(Renderer);
+			gameObject::menu_objects[i]->draw(Renderer);
 		}
 	}
 	else if (gameObject::state == 1)
@@ -172,9 +178,9 @@ void Game::update()
 {
 	if (gameObject::state == 0)
 	{
-		for (int i = 0; i < menu_objects.size(); i++)
+		for (int i = 0; i < gameObject::menu_objects.size(); i++)
 		{
-			menu_objects[i]->update();
+			gameObject::menu_objects[i]->update();
 		}
 	}
 	else if (gameObject::state == 1)
@@ -204,7 +210,6 @@ void Game::update()
 	}
 	else if (gameObject::state == 2)
 	{
-		std::cout << "game over\n";
 		for (int i = 0; i < gameover_objects.size(); i++)
 		{
 			gameover_objects[i]->update();
@@ -216,18 +221,18 @@ void Game::clean()
 	std::cout << "cleaning game\n";
 	if (gameObject::state == 0)
 	{
-		for (int i = 0; i < menu_objects.size(); i++)
+		for (int i = 0; i < gameObject::menu_objects.size(); i++)
 		{
-			menu_objects[i]->clean();
+			gameObject::menu_objects[i]->clean();
 		}
 	}
-	else if (gameObject::state == 1)
-	{
-		for (int i = 0; i < play_objects.size(); i++)
-		{
-			play_objects[i]->clean();
-		}
-	}
+	// else if (gameObject::state == 1)
+	// {
+	// 	for (int i = 0; i < gameObject::play_objects.size(); i++)
+	// 	{
+	// 		gameObject::play_objects[i]->clean();
+	// 	}
+	// }
 
 	SDL_DestroyWindow(Window);
 	SDL_DestroyRenderer(Renderer);

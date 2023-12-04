@@ -9,6 +9,7 @@
 #include "Static_tree.h"
 #include "bullet.h"
 #include "lives.h"
+#include "menu.h"
 
 class Game
 {
@@ -34,7 +35,7 @@ private:
 	SDL_Renderer *Renderer;
 	bool Running;
 
-		gameObject *pl1;
+	gameObject *pl1;
 	gameObject *pl2;
 	gameObject *en1;
 	gameObject *en2;
@@ -50,6 +51,7 @@ private:
 	gameObject *enemy2;
 	gameObject *bullet_test;
 	gameObject *life;
+	gameObject *menu_bck;
 };
 
 typedef Game TheGame;
