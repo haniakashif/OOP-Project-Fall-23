@@ -18,6 +18,7 @@ public:
     bool collides_with_right(std::vector<gameObject *> objs, std::vector<gameObject *> objs2, int buffer);
     bool collides_with_top(std::vector<gameObject *> objs, std::vector<gameObject *> objs2, int buffer);
     bool collides_with_bottom(std::vector<gameObject *> objs, std::vector<gameObject *> objs2, int buffer);
+    gameObject *get_colliding_object(std::vector<gameObject *> objs, gameObject *obj);
 };
 
 typedef CollissionManager TheCollissionManager;

@@ -20,6 +20,11 @@ void Bullet::update()
     {
         gameObject::remove_from_vector(gameObject::objects, this);
     }
+    if (TheCollissionManager::Instance()->collides(gameObject::enemy_objs, this))
+    {
+        gameObject::remove_from_vector(gameObject::enemy_objs, TheCollissionManager::Instance()->get_colliding_object(gameObject::enemy_objs, this));
+        gameObject::remove_from_vector(gameObject::objects, this);
+    }
 }
 
 void Bullet::clean()

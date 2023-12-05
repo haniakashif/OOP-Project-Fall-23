@@ -10,6 +10,8 @@ int gameObject::state = 0;
 
 int gameObject::life = 3;
 
+int gameObject::keys = 0;
+
 void gameObject::load(int x, int y, int w, int h, std::string id, int x_s, int y_s, bool background)
 {
     x_pos = x;
@@ -95,11 +97,12 @@ void gameObject::remove_from_vector(std::vector<gameObject *> &vec, gameObject *
 {
     for (int i = 0; i < vec.size(); i++)
     {
-        if (vec[i]->get_name() == obj->get_name())
+        if (vec[i] == obj)
         {
             gameObject *temp = vec[i];
             vec.erase(vec.begin() + i);
             delete temp;
+            return;
         }
     }
 }

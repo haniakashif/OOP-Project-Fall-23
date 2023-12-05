@@ -150,3 +150,21 @@ bool CollissionManager::collides_with_bottom(std::vector<gameObject *> objs, std
     }
     return false;
 }
+
+gameObject *CollissionManager::get_colliding_object(std::vector<gameObject *> objs, gameObject *obj)
+{
+    for (int i = 0; i < objs.size(); i++)
+    {
+        if (objs[i]->get_name() != obj->get_name())
+        {
+            if (objs[i]->get_x() + objs[i]->get_width() >= obj->get_x() &&
+                objs[i]->get_x() <= obj->get_x() + obj->get_width() &&
+                objs[i]->get_y() + objs[i]->get_height() >= obj->get_y() &&
+                objs[i]->get_y() <= obj->get_y() + obj->get_height())
+            {
+                return objs[i];
+            }
+        }
+    }
+    return nullptr;
+}

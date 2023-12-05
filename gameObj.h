@@ -39,6 +39,8 @@ public:
     static std::vector<gameObject *> foreground_objs;
     static std::vector<gameObject *> menu_objects;
 
+    static int keys;
+
     static int move_x;
     static int move_y;
 
@@ -65,6 +67,7 @@ protected:
 
     int velocity_x = 0;
     int velocity_y = 0;
+
 };
 
 #endif
