@@ -49,14 +49,6 @@ void Static_tree::update()
             }
         }
     }
-    if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_W))
-    {
-        std::cout << "W presses\n ";
-        for (int i = 0; i < gameObject::player_objs.size(); i++)
-        {
-            std::cout << gameObject::player_objs[i]->get_name() << std::endl;
-        }
-    }
 }
 
 void Static_tree::clean()

@@ -38,6 +38,7 @@ public:
     static std::vector<gameObject *> enemy_objs;
     static std::vector<gameObject *> foreground_objs;
     static std::vector<gameObject *> menu_objects;
+    static std::vector<gameObject *> Collectible_objects;
 
     static int keys;
 

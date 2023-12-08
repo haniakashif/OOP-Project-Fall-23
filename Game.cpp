@@ -86,6 +86,14 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	{
 		return false;
 	}
+	if (!TheTextureManager::instance()->load_img("key.png", "key", Renderer))
+	{
+		return false;
+	}
+	if (!TheTextureManager::instance()->load_img("keys.png", "keys", Renderer))
+	{
+		return false;
+	}
 
 	// en1 = new enemy();
 	// en2 = new enemy();
@@ -103,7 +111,12 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	enemy1 = new Enemy_troll();
 	enemy2 = new Enemy_troll();
 	life = new lives();
+	key_collected = new keys();
 	menu_bck = new menu();
+	key1 = new Collectibles();
+	key2 = new Collectibles();
+	key3 = new Collectibles();
+
 	char2->load(783, 384, 32, 32, "w1");
 	back1->load(0, 0, 2732, 1536, "back", 0, 0, true);
 	tree1->load(100, 100, 128, 176, "tileset", 32, 304);
@@ -112,7 +125,11 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	enemy1->load(1400, 400, 48, 48, "enemy_walk");
 	enemy2->load(100, 400, 48, 48, "enemy_walk");
 	life->load(0, 0, 105, 34, "hearts");
+	key_collected->load(0, 768 - 25, 75, 25, "keys");
 	menu_bck->load(0, 0, 1366, 768, "menu_back");
+	key1->load(392 - 10, 700 - 10, 25, 26, "key");
+	key2->load(944 - 10, 1188 - 10, 25, 26, "key");
+	key3->load(1568 - 10, 1216 - 10, 25, 26, "key");
 
 	// bullet_test = new Bullet();
 	// bullet_test->load(100, 100, 32, 32, "w1");
@@ -163,6 +180,12 @@ void Game::render()
 		{
 			gameObject::foreground_objs[i]->draw(Renderer);
 		}
+		for (int i = 0; i < gameObject::Collectible_objects.size(); i++)
+		{
+			gameObject::Collectible_objects[i]->draw(Renderer);
+		}
+		// std::cout << gameObject::Collectible_objects.size() << "\n";
+		std::cout << gameObject::keys << "\n";
 	}
 	else if (gameObject::state == 2)
 	{
@@ -206,6 +229,10 @@ void Game::update()
 		for (int i = 0; i < gameObject::foreground_objs.size(); i++)
 		{
 			gameObject::foreground_objs[i]->update();
+		}
+		for (int i = 0; i < gameObject::Collectible_objects.size(); i++)
+		{
+			gameObject::Collectible_objects[i]->update();
 		}
 	}
 	else if (gameObject::state == 2)

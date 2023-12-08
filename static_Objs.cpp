@@ -97,19 +97,6 @@ void static_Objs::update()
             }
         }
     }
-
-    if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_P))
-    {
-        std::cout << "P pressed\n";
-        std::cout << gameObject::objects.size() << std::endl;
-        for (int i = 0; i < gameObject::objects.size(); i++)
-        {
-            std::cout << "entered for loop\n";
-            std::cout << gameObject::objects[i]->get_name() << std::endl;
-        }
-    }
-    // std::cout << "move_x: " << move_x << std::endl;
-    // std::cout << "move_y: " << move_y << std::endl;
 }
 
 void static_Objs::clean()

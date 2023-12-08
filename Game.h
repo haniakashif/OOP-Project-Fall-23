@@ -10,6 +10,8 @@
 #include "bullet.h"
 #include "lives.h"
 #include "menu.h"
+#include "Collectibles.h"
+#include "keys.h"
 
 class Game
 {
@@ -51,7 +53,11 @@ private:
 	gameObject *enemy2;
 	gameObject *bullet_test;
 	gameObject *life;
+	gameObject *key_collected;
 	gameObject *menu_bck;
+	gameObject *key1;
+	gameObject *key2;
+	gameObject *key3;
 };
 
 typedef Game TheGame;
