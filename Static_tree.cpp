@@ -19,7 +19,7 @@ void Static_tree::update()
         }
     }
 
-    if ((TheInputHandler::Instance()->keyDown(SDL_SCANCODE_LEFT)))
+    else if ((TheInputHandler::Instance()->keyDown(SDL_SCANCODE_LEFT)))
     {
         if (!TheCollissionManager::Instance()->collides_with_left(gameObject::player_objs, gameObject::objects, 0))
         {
@@ -39,7 +39,7 @@ void Static_tree::update()
             }
         }
     }
-    if ((TheInputHandler::Instance()->keyDown(SDL_SCANCODE_DOWN)))
+    else if ((TheInputHandler::Instance()->keyDown(SDL_SCANCODE_DOWN)))
     {
         if (!TheCollissionManager::Instance()->collides_with_top(gameObject::player_objs, gameObject::objects, 0))
         {

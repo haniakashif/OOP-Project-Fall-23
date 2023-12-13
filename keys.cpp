@@ -29,6 +29,10 @@ void keys::update()
     {
         currRow = 7;
     }
+    else if (gameObject::keys == 4)
+    {
+        gameObject::state = 3;
+    }
 }
 
 void keys::clean()

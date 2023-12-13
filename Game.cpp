@@ -54,7 +54,7 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	// {
 	// 	return false;
 	// }
-	if (!TheTextureManager::instance()->load_img("background.png", "back", Renderer))
+	if (!TheTextureManager::instance()->load_img("background_new.png", "back", Renderer))
 	{
 		return false;
 	}
@@ -94,22 +94,13 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	{
 		return false;
 	}
+	if (!TheTextureManager::instance()->load_img("black.png", "black", Renderer))
+	{
+		return false;
+	}
 
-	// en1 = new enemy();
-	// en2 = new enemy();
-	// pl1 = new player();
-	// pl2 = new player();
-	// en1->load(0, 0, 158, 126, "animate");
-	// en2->load(0, 100, 158, 126, "animate");
-	// pl1->load(0, 200, 158, 126, "animate");
-	// pl2->load(0, 300, 158, 126, "animate");
 	char2 = new Character();
 	back1 = new static_Objs();
-	tree1 = new Static_tree();
-	tree2 = new Static_tree();
-	tree3 = new Static_tree();
-	enemy1 = new Enemy_troll();
-	enemy2 = new Enemy_troll();
 	life = new lives();
 	key_collected = new keys();
 	menu_bck = new menu();
@@ -117,36 +108,76 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 	key2 = new Collectibles();
 	key3 = new Collectibles();
 
-	char2->load(783, 384, 32, 32, "w1");
+	barrier = new Static_tree();
+	barrier2 = new Static_tree();
+	barrier3 = new Static_tree();
+	barrier4 = new Static_tree();
+	barrier5 = new Static_tree();
+	barrier6 = new Static_tree();
+	barrier7 = new Static_tree();
+	barrier8 = new Static_tree();
+	barrier9 = new Static_tree();
+	barrier10 = new Static_tree();
+	barrier11 = new Static_tree();
+	barrier12 = new Static_tree();
+	barrier13 = new Static_tree();
+	barrier14 = new Static_tree();
+	barrier15 = new Static_tree();
+	barrier16 = new Static_tree();
+	barrier17 = new Static_tree();
+	barrier18 = new Static_tree();
+	barrier19 = new Static_tree();
+	barrier20 = new Static_tree();
+	barrier21 = new Static_tree();
+	barrier22 = new Static_tree();
+	barrier23 = new Static_tree();
+	barrier24 = new Static_tree();
+	barrier25 = new Static_tree();
+
+	win = new Collectibles();
+
+	enemy1 = new Enemy_troll();
+	enemy2 = new Enemy_troll();
+
+	char2->load(30, 198, 32, 32, "w1");
 	back1->load(0, 0, 2732, 1536, "back", 0, 0, true);
-	tree1->load(100, 100, 128, 176, "tileset", 32, 304);
-	tree2->load(1000, 500, 128, 176, "tileset", 32, 304);
-	tree3->load(1200, 500, 128, 176, "tileset", 32, 304);
-	enemy1->load(1400, 400, 48, 48, "enemy_walk");
-	enemy2->load(100, 400, 48, 48, "enemy_walk");
 	life->load(0, 0, 105, 34, "hearts");
 	key_collected->load(0, 768 - 25, 75, 25, "keys");
 	menu_bck->load(0, 0, 1366, 768, "menu_back");
-	key1->load(392 - 10, 700 - 10, 25, 26, "key");
-	key2->load(944 - 10, 1188 - 10, 25, 26, "key");
-	key3->load(1568 - 10, 1216 - 10, 25, 26, "key");
+	key1->load(23, 1482, 25, 26, "key");
+	key2->load(1044, 1120, 25, 26, "key");
+	key3->load(2688, 1498, 25, 26, "key");
 
-	// bullet_test = new Bullet();
-	// bullet_test->load(100, 100, 32, 32, "w1");
+	barrier->load(272, 170, 10, 822, "");
+	barrier2->load(0, 146, 368, 26, "");
+	barrier3->load(0, 233, 200, 10, "");
+	barrier4->load(191, 233, 24, 760, "");
+	barrier5->load(115, 982, 98, 21, "");
+	barrier6->load(126, 999, 21, 74, "");
+	barrier7->load(143, 1053, 73, 163, "");
+	barrier8->load(0, 1192, 143, 21, "");
+	barrier9->load(268, 982, 88, 17, "");
+	barrier10->load(329, 999, 22, 54, "");
+	barrier11->load(257, 1053, 86, 169, "");
+	barrier12->load(340, 1213, 640, 95, "");
+	barrier13->load(340, 1364, 646, 200, "");
+	barrier14->load(966, 1192, 678, 40, "");
+	barrier15->load(966, 1513, 663, 23, "");
+	barrier16->load(1593, 1140, 567, 184, "");
+	barrier17->load(1593, 1364, 567, 172, "");
+	barrier18->load(1596, 876, 808, 289, "");
+	barrier19->load(2152, 495, 580, 337, "");
+	barrier20->load(2444, 810, 288, 361, "");
+	barrier21->load(1365, 263, 807, 570, ""); // sdsdsd
+	barrier22->load(898, 480, 68, 763, "");
+	barrier23->load(898, 165, 413, 334, "");
+	barrier24->load(1260, 0, 893, 208, "");
+	barrier25->load(2152, 0, 580, 36, "");
 
-	// menu_objects.push_back((en1));
-	// menu_objects.push_back((en2));
-	// menu_objects.push_back((pl1));
-	// menu_objects.push_back((pl2));
-	// play_objects.push_back(gameObject::player_objs);
-	// play_objects.push_back(gameObject::objects);
-	// play_objects.push_back(gameObject::enemy_objs);
-	// play_objects.push_back((back1));
-	// play_objects.push_back((char2));
-	// play_objects.push_back((tree1));
-	// play_objects.push_back((tree2));
-	// play_objects.push_back((tree3));
-	// play_objects.push_back((enemy1));
+	win->load(2447, 32, 20, 20, "");
+
+	enemy1->load(237, 1247, 48, 48, "enemy_walk");
+	enemy2->load(237, 1300, 48, 48, "enemy_walk");
 
 	return true;
 }
@@ -241,6 +272,18 @@ void Game::update()
 		{
 			gameover_objects[i]->update();
 		}
+		gameObject::life = 3;
+		gameObject::keys = 0;
+		// Game::reset_game();
+	}
+	else if (gameObject::state == 3)
+	{
+		// game win objects update here
+
+		// resetting the game variables:
+		gameObject::life = 3;
+		gameObject::keys = 0;
+		// Game::reset_game();
 	}
 }
 void Game::clean()
@@ -292,6 +335,8 @@ void Game::handleEvents()
 					gameObject::state = 2;
 				else if (gameObject::state == 2)
 					gameObject::state = 0;
+				else if (gameObject::state == 3)
+					gameObject::state = 0;
 				std::cout << gameObject::state << "\n";
 				break;
 			default:
@@ -313,6 +358,13 @@ Game *Game::instance()
 		return g_instance;
 	}
 	return g_instance;
+}
+
+void Game::reset_game()
+{
+	delete Game::g_instance;
+	Game::g_instance = nullptr;
+	// Game::g_instance = new Game();
 }
 
 Game *Game::g_instance = nullptr;

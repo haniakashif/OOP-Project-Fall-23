@@ -65,8 +65,8 @@ void Character::update()
                 move_x -= 1;
             }
         }
-    };
-    if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_LEFT))
+    }
+    else if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_LEFT))
     {
         up = false;
         down = false;
@@ -102,8 +102,8 @@ void Character::update()
                 move_y += 1;
             }
         }
-    };
-    if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_DOWN))
+    }
+    else if (TheInputHandler::Instance()->keyDown(SDL_SCANCODE_DOWN))
     {
         up = false;
         down = true;

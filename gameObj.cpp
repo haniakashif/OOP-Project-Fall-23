@@ -108,5 +108,5 @@ void gameObject::remove_from_vector(std::vector<gameObject *> &vec, gameObject *
     }
 }
 
-int gameObject::move_x = 783;
-int gameObject::move_y = 384;
+int gameObject::move_x = 30;
+int gameObject::move_y = 198;

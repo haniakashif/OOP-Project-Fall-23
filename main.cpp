@@ -20,7 +20,6 @@ int main(int argc, char *args[])
 			TheGame::instance()->handleEvents();
 			TheGame::instance()->update();
 			TheGame::instance()->render();
-
 			frameTime = SDL_GetTicks() - frameStart;
 
 			if (frameTime < DELAY_TIME)
