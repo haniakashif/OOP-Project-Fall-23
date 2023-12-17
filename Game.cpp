@@ -260,13 +260,46 @@ void Game::clean()
 {
 	std::cout << "cleaning game\n";
 
-	// else if (gameObject::state == 1)
-	// {
-	// 	for (int i = 0; i < gameObject::play_objects.size(); i++)
-	// 	{
-	// 		gameObject::play_objects[i]->clean();
-	// 	}
-	// }
+	for (int i = 0; i < gameObject::player_objs.size(); i++)
+	{
+		delete gameObject::player_objs[i];
+	}
+	for (int i = 0; i < gameObject::objects.size(); i++)
+	{
+		delete gameObject::objects[i];
+	}
+	for (int i = 0; i < gameObject::enemy_objs.size(); i++)
+	{
+		delete gameObject::enemy_objs[i];
+	}
+	for (int i = 0; i < gameObject::foreground_objs.size(); i++)
+	{
+		delete gameObject::foreground_objs[i];
+	}
+	for (int i = 0; i < gameObject::Collectible_objects.size(); i++)
+	{
+		delete gameObject::Collectible_objects[i];
+	}
+	for (int i = 0; i < gameObject::menu_objects.size(); i++)
+	{
+		delete gameObject::menu_objects[i];
+	}
+	for (int i = 0; i < gameObject::win_state_objs.size(); i++)
+	{
+		delete gameObject::win_state_objs[i];
+	}
+	for (int i = 0; i < gameObject::lose_state_objs.size(); i++)
+	{
+		delete gameObject::lose_state_objs[i];
+	}
+	gameObject::player_objs.clear();
+	gameObject::objects.clear();
+	gameObject::enemy_objs.clear();
+	gameObject::foreground_objs.clear();
+	gameObject::Collectible_objects.clear();
+	gameObject::menu_objects.clear();
+	gameObject::win_state_objs.clear();
+	gameObject::lose_state_objs.clear();
 
 	SDL_DestroyWindow(Window);
 	SDL_DestroyRenderer(Renderer);
