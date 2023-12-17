@@ -14,7 +14,4 @@ void Background::update()
 {
 }
 
-void Background::clean()
-{
-    std::cout << "background clean\n";
-}
+

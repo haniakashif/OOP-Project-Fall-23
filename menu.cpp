@@ -15,7 +15,3 @@ void menu::update()
 {
 }
 
-void menu::clean()
-{
-    std::cout << "menu clean\n";
-}

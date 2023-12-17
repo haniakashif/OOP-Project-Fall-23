@@ -1,16 +1,16 @@
-#include "Enemy_troll.h"
+#include "Enemy_troll2.h"
 
-void Enemy_troll::load(int x, int y, int w, int h, std::string id, int x_s, int y_s, bool background)
+void Enemy_troll2::load(int x, int y, int w, int h, std::string id, int x_s, int y_s, bool background)
 {
     enemy::load(x, y, w, h, id, x_s, y_s);
 }
 
-void Enemy_troll::draw(SDL_Renderer *renderer)
+void Enemy_troll2::draw(SDL_Renderer *renderer)
 {
     enemy::draw(renderer);
 }
 
-void Enemy_troll::update()
+void Enemy_troll2::update()
 {
     currFrame = int(((SDL_GetTicks() / 300) % 5));
 
@@ -57,22 +57,22 @@ void Enemy_troll::update()
     }
     if (counter == 0)
     {
-        moving_right = true;
-        moving_left = false;
+        moving_down = true;
+        moving_up = false;
     }
     if (counter == 100)
     {
-        moving_right = false;
-        moving_left = true;
+        moving_down = false;
+        moving_up = true;
     }
-    if (moving_right)
+    if (moving_down)
     {
-        x_pos += 1;
+        y_pos += 1;
         counter += 1;
     }
-    if (moving_left)
+    if (moving_up)
     {
-        x_pos -= 1;
+        y_pos -= 1;
         counter -= 1;
     }
     int char_x = gameObject::player_objs[0]->get_x();

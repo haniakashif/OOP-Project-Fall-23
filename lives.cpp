@@ -31,10 +31,7 @@ void lives::update()
     }
 }
 
-void lives::clean()
-{
-    foreground_Objs::clean();
-}
+
 
 void lives::set_velocity(int x, int y)
 {

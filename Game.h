@@ -5,7 +5,7 @@
 #include "character.h"
 
 #include "Enemy_troll.h"
-#include "player.h"
+#include "Enemy_troll2.h"
 #include "Static_tree.h"
 #include "bullet.h"
 #include "lives.h"
@@ -26,6 +26,8 @@ public:
 	void clean();
 	void Quit() { Running = false; }
 	bool running() { return Running; }
+	void play_init();
+
 	SDL_Renderer *get_renderer() { return Renderer; }
 	std::vector<gameObject *> menu_objects;
 	std::vector<gameObject *> play_objects;
@@ -85,6 +87,17 @@ private:
 	gameObject *enemy8;
 	gameObject *enemy9;
 	gameObject *enemy10;
+	gameObject *enemy11;
+	gameObject *enemy12;
+	gameObject *enemy13;
+	gameObject *enemy14;
+	gameObject *enemy15;
+	gameObject *enemy16;
+	gameObject *enemy17;
+	gameObject *enemy18;
+	gameObject *enemy19;
+	gameObject *enemy20;
+	gameObject *enemy21;
 };
 
 typedef Game TheGame;

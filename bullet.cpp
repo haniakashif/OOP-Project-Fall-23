@@ -27,10 +27,7 @@ void Bullet::update()
     }
 }
 
-void Bullet::clean()
-{
-    Static_tree::clean();
-}
+
 
 void Bullet::set_velocity(int x, int y)
 {

@@ -147,7 +147,3 @@ void Character::update()
     }
 }
 
-void Character::clean()
-{
-    std::cout << "obstacle clean\n";
-}

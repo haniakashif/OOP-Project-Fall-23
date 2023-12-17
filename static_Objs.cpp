@@ -99,9 +99,7 @@ void static_Objs::update()
     }
 }
 
-void static_Objs::clean()
-{
-}
+
 
 void static_Objs::set_velocity(int x, int y)
 {

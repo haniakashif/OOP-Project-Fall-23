@@ -5,6 +5,8 @@ std::vector<gameObject *> gameObject::player_objs;
 std::vector<gameObject *> gameObject::enemy_objs;
 std::vector<gameObject *> gameObject::foreground_objs;
 std::vector<gameObject *> gameObject::menu_objects;
+std::vector<gameObject *> gameObject::win_state_objs;
+std::vector<gameObject *> gameObject::lose_state_objs;
 std::vector<gameObject *> gameObject::Collectible_objects;
 
 int gameObject::state = 0;
@@ -42,10 +44,6 @@ void gameObject::update()
     {
         gameObject::state = 2;
     }
-}
-
-void gameObject::clean()
-{
 }
 
 std::string gameObject::get_name()

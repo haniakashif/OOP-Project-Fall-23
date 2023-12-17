@@ -51,9 +51,7 @@ void Static_tree::update()
     }
 }
 
-void Static_tree::clean()
-{
-}
+
 
 void Static_tree::load(int x, int y, int w, int h, std::string id, int x_s, int y_s, bool background)
 {

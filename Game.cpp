@@ -99,85 +99,8 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 		return false;
 	}
 
-	char2 = new Character();
-	back1 = new static_Objs();
-	life = new lives();
-	key_collected = new keys();
 	menu_bck = new menu();
-	key1 = new Collectibles();
-	key2 = new Collectibles();
-	key3 = new Collectibles();
-
-	barrier = new Static_tree();
-	barrier2 = new Static_tree();
-	barrier3 = new Static_tree();
-	barrier4 = new Static_tree();
-	barrier5 = new Static_tree();
-	barrier6 = new Static_tree();
-	barrier7 = new Static_tree();
-	barrier8 = new Static_tree();
-	barrier9 = new Static_tree();
-	barrier10 = new Static_tree();
-	barrier11 = new Static_tree();
-	barrier12 = new Static_tree();
-	barrier13 = new Static_tree();
-	barrier14 = new Static_tree();
-	barrier15 = new Static_tree();
-	barrier16 = new Static_tree();
-	barrier17 = new Static_tree();
-	barrier18 = new Static_tree();
-	barrier19 = new Static_tree();
-	barrier20 = new Static_tree();
-	barrier21 = new Static_tree();
-	barrier22 = new Static_tree();
-	barrier23 = new Static_tree();
-	barrier24 = new Static_tree();
-	barrier25 = new Static_tree();
-
-	win = new Collectibles();
-
-	enemy1 = new Enemy_troll();
-	enemy2 = new Enemy_troll();
-
-	char2->load(30, 198, 32, 32, "w1");
-	back1->load(0, 0, 2732, 1536, "back", 0, 0, true);
-	life->load(0, 0, 105, 34, "hearts");
-	key_collected->load(0, 768 - 25, 75, 25, "keys");
 	menu_bck->load(0, 0, 1366, 768, "menu_back");
-	key1->load(23, 1482, 25, 26, "key");
-	key2->load(1044, 1120, 25, 26, "key");
-	key3->load(2688, 1498, 25, 26, "key");
-
-	barrier->load(272, 170, 10, 822, "");
-	barrier2->load(0, 146, 368, 26, "");
-	barrier3->load(0, 233, 200, 10, "");
-	barrier4->load(191, 233, 24, 760, "");
-	barrier5->load(115, 982, 98, 21, "");
-	barrier6->load(126, 999, 21, 74, "");
-	barrier7->load(143, 1053, 73, 163, "");
-	barrier8->load(0, 1192, 143, 21, "");
-	barrier9->load(268, 982, 88, 17, "");
-	barrier10->load(329, 999, 22, 54, "");
-	barrier11->load(257, 1053, 86, 169, "");
-	barrier12->load(340, 1213, 640, 95, "");
-	barrier13->load(340, 1364, 646, 200, "");
-	barrier14->load(966, 1192, 678, 40, "");
-	barrier15->load(966, 1513, 663, 23, "");
-	barrier16->load(1593, 1140, 567, 184, "");
-	barrier17->load(1593, 1364, 567, 172, "");
-	barrier18->load(1596, 876, 808, 289, "");
-	barrier19->load(2152, 495, 580, 337, "");
-	barrier20->load(2444, 810, 288, 361, "");
-	barrier21->load(1365, 263, 807, 570, ""); // sdsdsd
-	barrier22->load(898, 480, 68, 763, "");
-	barrier23->load(898, 165, 413, 334, "");
-	barrier24->load(1260, 0, 893, 208, "");
-	barrier25->load(2152, 0, 580, 36, "");
-
-	win->load(2447, 32, 20, 20, "");
-
-	enemy1->load(237, 1247, 48, 48, "enemy_walk");
-	enemy2->load(237, 1300, 48, 48, "enemy_walk");
 
 	return true;
 }
@@ -268,34 +191,75 @@ void Game::update()
 	}
 	else if (gameObject::state == 2)
 	{
-		for (int i = 0; i < gameover_objects.size(); i++)
+		for (int i = 0; i < gameObject::player_objs.size(); i++)
 		{
-			gameover_objects[i]->update();
+			delete gameObject::player_objs[i];
 		}
-		gameObject::life = 3;
-		gameObject::keys = 0;
-		// Game::reset_game();
+		for (int i = 0; i < gameObject::objects.size(); i++)
+		{
+			delete gameObject::objects[i];
+		}
+		for (int i = 0; i < gameObject::enemy_objs.size(); i++)
+		{
+			delete gameObject::enemy_objs[i];
+		}
+		for (int i = 0; i < gameObject::foreground_objs.size(); i++)
+		{
+			delete gameObject::foreground_objs[i];
+		}
+		for (int i = 0; i < gameObject::Collectible_objects.size(); i++)
+		{
+			delete gameObject::Collectible_objects[i];
+		}
+		gameObject::player_objs.clear();
+		gameObject::objects.clear();
+		gameObject::enemy_objs.clear();
+		gameObject::foreground_objs.clear();
+		gameObject::Collectible_objects.clear();
+
+		for (int i = 0; i < gameObject::lose_state_objs.size(); i++)
+		{
+			gameObject::lose_state_objs[i]->update();
+		}
 	}
 	else if (gameObject::state == 3)
 	{
+		for (int i = 0; i < gameObject::player_objs.size(); i++)
+		{
+			delete gameObject::player_objs[i];
+		}
+		for (int i = 0; i < gameObject::objects.size(); i++)
+		{
+			delete gameObject::objects[i];
+		}
+		for (int i = 0; i < gameObject::enemy_objs.size(); i++)
+		{
+			delete gameObject::enemy_objs[i];
+		}
+		for (int i = 0; i < gameObject::foreground_objs.size(); i++)
+		{
+			delete gameObject::foreground_objs[i];
+		}
+		for (int i = 0; i < gameObject::Collectible_objects.size(); i++)
+		{
+			delete gameObject::Collectible_objects[i];
+		}
+		gameObject::player_objs.clear();
+		gameObject::objects.clear();
+		gameObject::enemy_objs.clear();
+		gameObject::foreground_objs.clear();
+		gameObject::Collectible_objects.clear();
 		// game win objects update here
-
-		// resetting the game variables:
-		gameObject::life = 3;
-		gameObject::keys = 0;
-		// Game::reset_game();
+		for (int i = 0; i < gameObject::win_state_objs.size(); i++)
+		{
+			gameObject::win_state_objs[i]->update();
+		}
 	}
 }
 void Game::clean()
 {
 	std::cout << "cleaning game\n";
-	if (gameObject::state == 0)
-	{
-		for (int i = 0; i < gameObject::menu_objects.size(); i++)
-		{
-			gameObject::menu_objects[i]->clean();
-		}
-	}
+
 	// else if (gameObject::state == 1)
 	// {
 	// 	for (int i = 0; i < gameObject::play_objects.size(); i++)
@@ -330,7 +294,10 @@ void Game::handleEvents()
 			case SDLK_RETURN:
 
 				if (gameObject::state == 0)
+				{
+					play_init();
 					gameObject::state = 1;
+				}
 				else if (gameObject::state == 1)
 					gameObject::state = 2;
 				else if (gameObject::state == 2)
@@ -365,6 +332,130 @@ void Game::reset_game()
 	delete Game::g_instance;
 	Game::g_instance = nullptr;
 	// Game::g_instance = new Game();
+}
+
+void Game::play_init()
+{
+	gameObject::life = 3;
+	gameObject::keys = 0;
+	gameObject::move_x = 30;
+	gameObject::move_y = 198;
+
+	char2 = new Character();
+	back1 = new static_Objs();
+	life = new lives();
+	key_collected = new keys();
+	key1 = new Collectibles();
+	key2 = new Collectibles();
+	key3 = new Collectibles();
+
+	barrier = new Static_tree();
+	barrier2 = new Static_tree();
+	barrier3 = new Static_tree();
+	barrier4 = new Static_tree();
+	barrier5 = new Static_tree();
+	barrier6 = new Static_tree();
+	barrier7 = new Static_tree();
+	barrier8 = new Static_tree();
+	barrier9 = new Static_tree();
+	barrier10 = new Static_tree();
+	barrier11 = new Static_tree();
+	barrier12 = new Static_tree();
+	barrier13 = new Static_tree();
+	barrier14 = new Static_tree();
+	barrier15 = new Static_tree();
+	barrier16 = new Static_tree();
+	barrier17 = new Static_tree();
+	barrier18 = new Static_tree();
+	barrier19 = new Static_tree();
+	barrier20 = new Static_tree();
+	barrier21 = new Static_tree();
+	barrier22 = new Static_tree();
+	barrier23 = new Static_tree();
+	barrier24 = new Static_tree();
+	barrier25 = new Static_tree();
+
+	win = new Collectibles();
+
+	enemy1 = new Enemy_troll2();
+	enemy2 = new Enemy_troll2();
+	enemy3 = new Enemy_troll2();
+	enemy4 = new Enemy_troll2();
+	enemy5 = new Enemy_troll2();
+	enemy6 = new Enemy_troll2();
+	enemy7 = new Enemy_troll2();
+	enemy8 = new Enemy_troll();
+	enemy9 = new Enemy_troll();
+	enemy10 = new Enemy_troll();
+	enemy11 = new Enemy_troll();
+	enemy12 = new Enemy_troll();
+	enemy13 = new Enemy_troll();
+	enemy14 = new Enemy_troll();
+	enemy15 = new Enemy_troll();
+	enemy16 = new Enemy_troll2();
+	enemy17 = new Enemy_troll2();
+	enemy18 = new Enemy_troll2();
+	enemy19 = new Enemy_troll2();
+	enemy20 = new Enemy_troll();
+	enemy21 = new Enemy_troll();
+
+	char2->load(30, 198, 32, 32, "w1");
+	back1->load(0, 0, 2732, 1536, "back", 0, 0, true);
+	life->load(0, 0, 105, 34, "hearts");
+	key_collected->load(0, 768 - 25, 75, 25, "keys");
+	key1->load(23, 1482, 25, 26, "key");
+	key2->load(1044, 1120, 25, 26, "key");
+	key3->load(2688, 1498, 25, 26, "key");
+
+	barrier->load(272, 170, 10, 822, "");
+	barrier2->load(0, 146, 368, 26, "");
+	barrier3->load(0, 233, 200, 10, "");
+	barrier4->load(191, 233, 24, 760, "");
+	barrier5->load(115, 982, 98, 21, "");
+	barrier6->load(126, 999, 21, 74, "");
+	barrier7->load(143, 1053, 73, 163, "");
+	barrier8->load(0, 1192, 143, 21, "");
+	barrier9->load(268, 982, 88, 17, "");
+	barrier10->load(329, 999, 22, 54, "");
+	barrier11->load(257, 1053, 86, 169, "");
+	barrier12->load(340, 1213, 640, 95, "");
+	barrier13->load(340, 1364, 646, 200, "");
+	barrier14->load(966, 1192, 678, 40, "");
+	barrier15->load(966, 1513, 663, 23, "");
+	barrier16->load(1593, 1140, 567, 184, "");
+	barrier17->load(1593, 1364, 567, 172, "");
+	barrier18->load(1596, 876, 808, 289, "");
+	barrier19->load(2152, 495, 580, 337, "");
+	barrier20->load(2444, 810, 288, 361, "");
+	barrier21->load(1365, 263, 807, 570, "");
+	barrier22->load(898, 480, 68, 763, "");
+	barrier23->load(898, 165, 413, 334, "");
+	barrier24->load(1260, 0, 893, 208, "");
+	barrier25->load(2152, 0, 580, 36, "");
+
+	win->load(2447, 32, 20, 20, "");
+
+	enemy1->load(1085, 1368, 48, 48, "enemy_walk");
+	enemy2->load(1205, 1368, 48, 48, "enemy_walk");
+	enemy3->load(1366, 1368, 48, 48, "enemy_walk");
+	enemy4->load(1490, 1368, 48, 48, "enemy_walk");
+	enemy5->load(42, 1368, 48, 48, "enemy_walk");
+	enemy6->load(2684, 1368, 48, 48, "enemy_walk");
+	enemy7->load(2201, 1368, 48, 48, "enemy_walk");
+	enemy8->load(2426, 1500, 48, 48, "enemy_walk");
+	enemy9->load(191, 1239, 48, 48, "enemy_walk");
+	enemy10->load(2426, 1239, 48, 48, "enemy_walk");
+	enemy11->load(1366, 1137, 48, 48, "enemy_walk");
+	enemy12->load(1366, 1014, 48, 48, "enemy_walk");
+	enemy13->load(1163, 540, 48, 48, "enemy_walk");
+	enemy14->load(1163, 660, 48, 48, "enemy_walk");
+	enemy15->load(1163, 768, 48, 48, "enemy_walk");
+	enemy16->load(1000, 918, 48, 48, "enemy_walk");
+	enemy17->load(1100, 918, 48, 48, "enemy_walk");
+	enemy18->load(2200, 230, 48, 48, "enemy_walk");
+	enemy19->load(2300, 230, 48, 48, "enemy_walk");
+	enemy20->load(2260, 50, 48, 48, "enemy_walk");
+	enemy21->load(2260, 421, 48, 48, "enemy_walk");
 }
 
 Game *Game::g_instance = nullptr;

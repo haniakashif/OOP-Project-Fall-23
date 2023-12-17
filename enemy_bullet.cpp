@@ -27,10 +27,7 @@ void enemy_bullet::update()
     }
 }
 
-void enemy_bullet::clean()
-{
-    std::cout << "enemy_bullet clean\n";
-}
+
 
 void enemy_bullet::set_velocity(int x, int y)
 {

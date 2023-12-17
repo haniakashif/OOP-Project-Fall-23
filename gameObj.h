@@ -17,7 +17,6 @@ public:
     // virtual void draw(SDL_Renderer *rend);
     virtual void draw(SDL_Renderer *renderer);
     virtual void update();
-    virtual void clean();
 
     virtual void remove_from_vector(std::vector<gameObject *> &vec, gameObject *obj);
 
@@ -38,6 +37,8 @@ public:
     static std::vector<gameObject *> enemy_objs;
     static std::vector<gameObject *> foreground_objs;
     static std::vector<gameObject *> menu_objects;
+    static std::vector<gameObject *> win_state_objs;
+    static std::vector<gameObject *> lose_state_objs;
     static std::vector<gameObject *> Collectible_objects;
 
     static int keys;
@@ -68,7 +69,6 @@ protected:
 
     int velocity_x = 0;
     int velocity_y = 0;
-
 };
 
 #endif

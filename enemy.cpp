@@ -14,8 +14,3 @@ void enemy::draw(SDL_Renderer *renderer)
 void enemy::update()
 {
 }
-
-void enemy::clean()
-{
-    std::cout << "enemy clean\n";
-}

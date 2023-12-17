@@ -11,7 +11,7 @@ public:
     bool keyDown(SDL_Scancode scanCode);
     void update();
 
-    void clean() {}
+ 
     bool keyUp(SDL_Scancode scanCode);
 
 private:

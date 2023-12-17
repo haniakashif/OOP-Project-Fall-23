@@ -35,10 +35,7 @@ void keys::update()
     }
 }
 
-void keys::clean()
-{
-    foreground_Objs::clean();
-}
+
 
 void keys::set_velocity(int x, int y)
 {

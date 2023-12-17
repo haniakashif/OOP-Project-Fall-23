@@ -16,7 +16,3 @@ void foreground_Objs::update()
 {
 }
 
-void foreground_Objs::clean()
-{
-    std::cout << "foreground_Objs clean\n";
-}

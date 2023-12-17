@@ -23,7 +23,3 @@ void Collectibles::update()
     }
 }
 
-void Collectibles::clean()
-{
-    std::cout << "Collectibles clean\n";
-}
