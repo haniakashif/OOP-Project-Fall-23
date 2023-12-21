@@ -1,6 +1,12 @@
 #include "Game.h"
 #include <iostream>
 
+// Initialize static member
+Mix_Chunk *Game::keyPickupSound = NULL;
+Mix_Music *Game::forestmusic = NULL;
+Mix_Chunk *Game::lifelost = NULL;
+Mix_Chunk *Game::winsound = NULL;
+
 bool Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
 	int flags = 0;
@@ -11,6 +17,47 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
 	{
+		// Initialize SDL_mixer
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+		{
+			std::cout << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << "\n";
+			return false;
+		}
+		// Allocate 10 channels for mixing
+		Mix_AllocateChannels(10);
+
+		// Load the sound effect
+		keyPickupSound = Mix_LoadWAV("Key Sound Effect.wav");
+		if (keyPickupSound == NULL)
+		{
+			std::cout << "Failed to load key pickup sound! SDL_mixer Error: " << Mix_GetError() << "\n";
+			return false;
+		}
+
+		forestmusic = Mix_LoadMUS("Medieval Music.mp3");
+		if (forestmusic == NULL)
+		{
+			std::cout << "Failed to load forest music! SDL_mixer Error: " << Mix_GetError() << "\n";
+			return false;
+		}
+		Mix_PlayMusic(forestmusic, -1);
+		lifelost = Mix_LoadWAV("life lost sound.wav");
+		if (lifelost == NULL)
+		{
+			std::cout << "Failed to load life lost sound! SDL_mixer Error: " << Mix_GetError() << "\n";
+			return false;
+		}
+
+		winsound = Mix_LoadWAV("Win sound effect.wav");
+		if (winsound == NULL)
+		{
+			std::cout << "Failed to load win sound! SDL_mixer Error: " << Mix_GetError() << "\n";
+			return false;
+		}
+
+		// Set volume to half of maximum
+		Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
+
 		std::cout << "SDL Init Success \n";
 
 		Window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
@@ -46,14 +93,18 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 
 	Running = true;
 
-	if (!TheTextureManager::instance()->load_img("my assets.png", "animate", Renderer))
+	if (!TheTextureManager::instance()->load_img("menubutton.png", "menubuttons", Renderer))
 	{
 		return false;
 	}
-	// if (!TheTextureManager::instance()->load_img("characters.png", "char_animate", Renderer))
-	// {
-	// 	return false;
-	// }
+	if (!TheTextureManager::instance()->load_img("gameover.png", "gameover", Renderer))
+	{
+		return false;
+	}
+	if (!TheTextureManager::instance()->load_img("win.png", "win", Renderer))
+	{
+		return false;
+	}
 	if (!TheTextureManager::instance()->load_img("background_new.png", "back", Renderer))
 	{
 		return false;
@@ -101,7 +152,19 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 
 	menu_bck = new menu();
 	menu_bck->load(0, 0, 1366, 768, "menu_back");
-
+	btn = new buttons();
+	btn->load(200, 200, 195, 96, "menubuttons");
+	exitbtn = new buttons();
+	exitbtn->load(200, 300, 196, 92, "menubuttons", 0, 96);
+	exitbg = new gamewin();
+	exitbg->load(0, 0, 1366, 768, "menu_back");
+	winning = new gamewin();
+	winning->load(435, 240, 428, 338, "win");
+	exitbg2 = new gamelose();
+	exitbg2->load(0, 0, 1366, 768, "menu_back");
+	lose = new gamelose();
+	lose->load(380, 130, 623, 580, "gameover");
+	
 	return true;
 }
 
@@ -139,13 +202,18 @@ void Game::render()
 			gameObject::Collectible_objects[i]->draw(Renderer);
 		}
 		// std::cout << gameObject::Collectible_objects.size() << "\n";
-		std::cout << gameObject::keys << "\n";
+		// std::cout << gameObject::keys << "\n";
 	}
 	else if (gameObject::state == 2)
 	{
-		for (int i = 0; i < gameover_objects.size(); i++)
+		for (int i = 0; i < gameObject::lose_state_objs.size(); i++)
 		{
-			gameover_objects[i]->draw(Renderer);
+			gameObject::lose_state_objs[i]->draw(Renderer);
+		}
+	}
+	else if (gameObject::state == 3){
+		for( int i{}; i < gameObject::win_state_objs.size(); i++){
+			gameObject::win_state_objs[i]->draw(Renderer);
 		}
 	}
 	SDL_RenderPresent(Renderer);
@@ -324,6 +392,12 @@ void Game::handleEvents()
 			case SDLK_ESCAPE:
 				Running = false;
 				break;
+			case SDLK_w:
+				std::cout<<*char2<<"\n";
+				break;
+			case SDLK_p:
+				gameObject::state = 3;
+				break;
 			case SDLK_RETURN:
 
 				if (gameObject::state == 0)
@@ -337,11 +411,35 @@ void Game::handleEvents()
 					gameObject::state = 0;
 				else if (gameObject::state == 3)
 					gameObject::state = 0;
-				std::cout << gameObject::state << "\n";
+				// std::cout << gameObject::state << "\n";
 				break;
 			default:
 				break;
 			}
+			break;
+		case SDL_MOUSEBUTTONDOWN: // Handle mouse button down events
+			int x, y;
+			SDL_GetMouseState(&x, &y);
+			// for (auto &button : menu_objects)
+			// {
+				if (btn->isClicked(x, y))
+				{
+				std::cout<<x<<" "<<y<<"\n";
+				if (gameObject::state == 0)
+				{
+					play_init();
+					gameObject::state = 1;
+				}
+				}
+				else if (exitbtn->isClicked(x, y))
+				{
+				std::cout<<x<<" "<<y<<"\n";
+				if (gameObject::state == 0)
+				{
+					Running = false;
+				}
+				}
+			// }
 			break;
 		default:
 			break;

@@ -11,7 +11,7 @@ CollissionManager *CollissionManager::Instance()
     }
     return instance;
 }
-
+//just checks for collission
 bool CollissionManager::collides(std::vector<gameObject *> objs, gameObject *obj)
 {
     for (int i = 0; i < objs.size(); i++)
@@ -29,6 +29,7 @@ bool CollissionManager::collides(std::vector<gameObject *> objs, gameObject *obj
     }
     return false;
 }
+//checks for collission after adding a buffer(boundry)
 bool CollissionManager::collides_with_buffer(std::vector<gameObject *> objs, gameObject *obj, int buffer)
 {
     for (int i = 0; i < objs.size(); i++)
@@ -46,6 +47,7 @@ bool CollissionManager::collides_with_buffer(std::vector<gameObject *> objs, gam
     }
     return false;
 }
+//checks collission of two vectors
 bool CollissionManager::collides2(std::vector<gameObject *> objs, std::vector<gameObject *> objs2)
 {
     for (int i = 0; i < objs.size(); i++)
@@ -66,7 +68,7 @@ bool CollissionManager::collides2(std::vector<gameObject *> objs, std::vector<ga
     }
     return false;
 }
-
+//checks collission with right side
 bool CollissionManager::collides_with_right(std::vector<gameObject *> objs, std::vector<gameObject *> objs2, int buffer)
 {
     for (int i = 0; i < objs.size(); i++)
@@ -87,7 +89,7 @@ bool CollissionManager::collides_with_right(std::vector<gameObject *> objs, std:
     }
     return false;
 }
-
+//checks collission with left side
 bool CollissionManager::collides_with_left(std::vector<gameObject *> objs, std::vector<gameObject *> objs2, int buffer)
 {
     for (int i = 0; i < objs.size(); i++)
@@ -108,7 +110,7 @@ bool CollissionManager::collides_with_left(std::vector<gameObject *> objs, std::
     }
     return false;
 }
-
+//checks collission with top side
 bool CollissionManager::collides_with_top(std::vector<gameObject *> objs, std::vector<gameObject *> objs2, int buffer)
 {
     for (int i = 0; i < objs.size(); i++)
@@ -129,7 +131,7 @@ bool CollissionManager::collides_with_top(std::vector<gameObject *> objs, std::v
     }
     return false;
 }
-
+//checks collission with bottom side
 bool CollissionManager::collides_with_bottom(std::vector<gameObject *> objs, std::vector<gameObject *> objs2, int buffer)
 {
     for (int i = 0; i < objs.size(); i++)
@@ -150,7 +152,7 @@ bool CollissionManager::collides_with_bottom(std::vector<gameObject *> objs, std
     }
     return false;
 }
-
+//returns the object with which it is colliding
 gameObject *CollissionManager::get_colliding_object(std::vector<gameObject *> objs, gameObject *obj)
 {
     for (int i = 0; i < objs.size(); i++)

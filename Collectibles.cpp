@@ -20,6 +20,7 @@ void Collectibles::update()
         collected = true;
         gameObject::remove_from_vector(gameObject::Collectible_objects, this);
         gameObject::keys++;
+        Mix_PlayChannel(-1, Game::keyPickupSound, 0);
     }
 }
 

@@ -2,6 +2,8 @@
 
 #include "Static_tree.h"
 #include "CollissionManager.h"
+#include "Game.h" // Include the Game class header file
+#include "SDL_mixer.h" // Include the SDL_mixer header file
 
 class Collectibles : public Static_tree
 {

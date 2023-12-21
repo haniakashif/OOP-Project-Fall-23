@@ -14,9 +14,7 @@ public:
     void shoot_down(gameObject *shooter);
     void shoot_left(gameObject *shooter);
     void shoot_right(gameObject *shooter);
-
     void shoot(gameObject *shooter, int x, int y);
-
     void enemy_shoot(gameObject *shooter, int x, int y);
     static Shooter *Instance();
 };

@@ -24,6 +24,7 @@ void enemy_bullet::update()
     {
         gameObject::remove_from_vector(gameObject::objects, this);
         gameObject::life--;
+        Mix_PlayChannel(-1, Game::lifelost, 0);
     }
 }
 

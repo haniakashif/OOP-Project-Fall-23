@@ -15,6 +15,5 @@ protected:
     bool moving_down = true;
     bool moving_up = false;
     int counter = 50;
-
     int time = 0;
 };

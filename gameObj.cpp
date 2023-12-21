@@ -28,10 +28,13 @@ void gameObject::load(int x, int y, int w, int h, std::string id, int x_s, int y
     currRow = 1;
 }
 
-// void gameObject::draw(SDL_Renderer *renderer)
-// {
-//     TheTextureManager::instance()->drawFrame(name, x_pos, y_pos, width, height, currRow, currFrame, renderer);
-// }
+// std::ostream& gameObject::operator<<(std::ostream& os, const gameObject& obj) {
+//         os << "x_pos: " << obj.x_pos << "\n";
+//         os << "y_pos: " << obj.y_pos << "\n";
+//         return os;
+//     }
+
+    
 
 void gameObject::draw(SDL_Renderer *renderer)
 {
@@ -90,6 +93,11 @@ void gameObject::set_velocity(int x, int y)
 {
     velocity_x = x;
     velocity_y = y;
+}
+bool gameObject::isClicked(int mouseX, int mouseY)
+{
+    // SDL_Point point = {mouseX, mouseY};
+    // return SDL_PointInRect(&point, &rect);
 }
 
 void gameObject::remove_from_vector(std::vector<gameObject *> &vec, gameObject *obj)

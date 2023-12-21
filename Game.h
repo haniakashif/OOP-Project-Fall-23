@@ -2,8 +2,11 @@
 #define __Game__
 
 #include <vector>
-#include "character.h"
+#include "SDL_mixer.h"
+#include "SDL.h"
+#include "SDL_image.h"
 
+#include "character.h"
 #include "Enemy_troll.h"
 #include "Enemy_troll2.h"
 #include "Static_tree.h"
@@ -12,12 +15,17 @@
 #include "menu.h"
 #include "Collectibles.h"
 #include "keys.h"
+#include "gamelose.h"
+#include "gamewin.h"
+#include "buttons.h"
 
 class Game
 {
 public:
-	static Game *instance();
-	void reset_game();
+	static Mix_Chunk *keyPickupSound;
+	static Mix_Music *forestmusic;
+	static Mix_Chunk *lifelost;
+	static Mix_Chunk *winsound;
 
 	bool init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen);
 	void render();
@@ -27,6 +35,8 @@ public:
 	void Quit() { Running = false; }
 	bool running() { return Running; }
 	void play_init();
+	static Game *instance();
+	void reset_game();
 
 	SDL_Renderer *get_renderer() { return Renderer; }
 	std::vector<gameObject *> menu_objects;
@@ -45,6 +55,12 @@ private:
 	gameObject *life;
 	gameObject *key_collected;
 	gameObject *menu_bck;
+	gameObject *lose;
+	gameObject *winning;
+	gameObject *exitbg;
+	gameObject *exitbg2;
+	gameObject *btn;
+	gameObject *exitbtn;
 	gameObject *key1;
 	gameObject *key2;
 	gameObject *key3;

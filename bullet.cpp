@@ -13,17 +13,17 @@ void Bullet::draw(SDL_Renderer *renderer)
 void Bullet::update()
 {
     Static_tree::update();
-    currFrame = int(((SDL_GetTicks() / 300) % 4));
-    x_pos += velocity_x;
+    currFrame = int(((SDL_GetTicks() / 300) % 4)); // to make the frame change visible
+    x_pos += velocity_x; // making the bullet move with some velocity
     y_pos += velocity_y;
     if (TheCollissionManager::Instance()->collides(gameObject::objects, this) || (x_pos > 3000) || (x_pos < 0) || (y_pos > 3000) || (y_pos < 0))
     {
         gameObject::remove_from_vector(gameObject::objects, this);
     }
-    if (TheCollissionManager::Instance()->collides(gameObject::enemy_objs, this))
+    if (TheCollissionManager::Instance()->collides(gameObject::enemy_objs, this)) // if the bullet clodies then remove the enemy from enemy objetcs
     {
         gameObject::remove_from_vector(gameObject::enemy_objs, TheCollissionManager::Instance()->get_colliding_object(gameObject::enemy_objs, this));
-        gameObject::remove_from_vector(gameObject::objects, this);
+        gameObject::remove_from_vector(gameObject::objects, this); 
     }
 }
 

@@ -1,5 +1,7 @@
 #pragma once
 #include "foreground_Objs.h"
+#include "Game.h"
+#include "SDL_mixer.h" // Include SDL_mixer library
 
 class keys : public foreground_Objs
 {
